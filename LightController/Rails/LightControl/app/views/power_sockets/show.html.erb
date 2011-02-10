@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @power_socket.name %>
+</p>
+
+<p>
+  <b>Action:</b>
+  <%= @power_socket.action %>
+</p>
+
+
+<%= link_to 'Edit', edit_power_socket_path(@power_socket) %> |
+<%= link_to 'Back', power_sockets_path %>

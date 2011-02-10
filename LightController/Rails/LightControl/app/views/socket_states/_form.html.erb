@@ -1,0 +1,29 @@
+<%= form_for(@socket_state) do |f| %>
+  <% if @socket_state.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@socket_state.errors.count, "error") %> prohibited this socket_state from being saved:</h2>
+
+      <ul>
+      <% @socket_state.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :preset_id %><br />
+    <%= f.select :preset_id, Preset.all.collect {|p| [ p.name, p.id ] } %>
+  </div>
+  <div class="field">
+    <%= f.label :power_socket_id %><br />
+    <%= f.select :power_socket_id, PowerSocket.all.collect {|p| [ p.name, p.id ] } %>
+  </div>
+  <div class="field">
+    <%= f.label :state %><br />
+    <%= f.select :state, options_for_select({"On" => 1, "Off" => 0}) %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,12 @@
+<% title "Power sockets" %>
+<table width="100%">	
+<% @power_sockets.each do |power_socket| %>
+	<tr>
+		<td><%= image_tag "outlet.png" %></td>
+		<td class="bigboldtext"><%= power_socket.name %></td>
+		<td class="bigtext"><%= power_socket.current_state == 1 ? link_to(image_tag('/images/on.png'), socket_disable_path(power_socket), :class => "red") : link_to(image_tag('/images/off.png'), socket_enable_path(power_socket), :class => "green") %></td>
+	</tr>
+<% end %>
+</table>
+<br />
+<%= link_to "Save as preset", save_presets_url %> | <%= link_to "Back to presets", presets_url %>

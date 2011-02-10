@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  preset_id: 1
+  power_socket_id: 1
+  state: 1
+
+two:
+  preset_id: 1
+  power_socket_id: 1
+  state: 1

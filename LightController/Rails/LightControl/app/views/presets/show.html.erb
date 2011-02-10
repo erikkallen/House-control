@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @preset.name %>
+</p>
+
+<p>
+  <b>Icon:</b>
+  <%= @preset.icon %>
+</p>
+
+
+<%= link_to 'Edit', edit_preset_path(@preset) %> |
+<%= link_to 'Back', presets_path %>

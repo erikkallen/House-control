@@ -1,0 +1,2 @@
+module PowerSocketsHelper
+end

@@ -1,0 +1,25 @@
+<%= form_for(@power_socket) do |f| %>
+  <% if @power_socket.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@power_socket.errors.count, "error") %> prohibited this power_socket from being saved:</h2>
+
+      <ul>
+      <% @power_socket.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :action %><br />
+    <%= f.text_field :action %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,23 @@
+<% title image_tag('/images/lightning.png') + "Power presets" %>
+<table>
+<% @presets.each do |preset| %>
+  <tr>
+	<td><%= image_tag preset.icon || 'presets.png' %></td>
+    <td class="<%= preset.active ? "bigboldtext" : "bigtext" %>"><%= link_to preset.name, preset %></td>
+  </tr>
+<% end %>
+</table>
+<br />
+<table>
+  <tr>
+	<td><%= image_tag "outlet.png" %></td>
+    <td class="bigtext"><%= link_to "Outlets", power_sockets_url %></td>
+  </tr>
+</table>
+<br />
+<table>
+  <tr>
+	<td><%= image_tag "settings.png" %></td>
+    <td class="bigtext"><%= link_to "Settings", settings_url %></td>
+  </tr>
+</table>

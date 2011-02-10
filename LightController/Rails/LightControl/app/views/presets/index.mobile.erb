@@ -1,0 +1,11 @@
+<% title "Power presets" %>
+<h1>Power presets</h1>
+<ul id="preset_list">
+  <% for preset in @presets %>
+    <li id="preset_<%= preset.id %>">
+      <%= link_to image_tag(preset.icon || "presets.png", :class => "img") + preset.name, preset %>
+    </li>
+  <% end %>
+</ul>
+<ul><li class="arrow"><%= link_to image_tag("outlet.png", :class => "img") + "Outlets", power_sockets_path %></li></ul>
+<ul><li class="arrow"><%= link_to image_tag("settings.png", :class => "img") + "Settings", settings_path %></li></ul>

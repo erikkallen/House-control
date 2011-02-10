@@ -1,0 +1,16 @@
+<% form_for @power_socket do |f| %>
+<h1>Name</h1>
+  <ul class="rounded">
+	
+    <li>
+      <%= f.text_field :name, :placeholder => "Name" %>
+    </li>
+</ul>
+<h1>Action</h1>
+<ul>    
+<li>
+      <%= f.text_field :action, :placeholder => "Action" %>
+    </li>
+  </ul>
+  <a style="margin:0 10px;color:rgba(0,0,0,.9)" href="#" class="submit whiteButton">Submit</a>
+<% end %>

@@ -1,0 +1,31 @@
+<% title @setting.camelcase + " setting" %>
+
+
+<% if @setting == "socket" %>
+	<%= form_tag rename_power_sockets_path, :method => :put do %>
+		<table width="100%">	
+		<% @power_sockets.each do |power_socket| %>
+			<tr>
+				<td><%= image_tag "outlet.png" %></td>
+				<td class="bigboldtext"><%= text_field_tag "power_socket_#{power_socket.id}", power_socket.name %></td>
+				<td><%= link_to 'Destroy', power_socket_path(power_socket),:method => :delete %></td>
+			</tr>
+		<% end %>
+	</table>
+	<%= submit_tag "Save" %> | <%= link_to 'Back', power_sockets_url %>
+	<% end %>
+<% end %>
+<% if @setting == "preset" %>
+	<%= form_tag rename_presets_path, :method => :put do %>
+		<table width="100%">	
+		<% @presets.each do |preset| %>
+			<tr>
+				<td><%= image_tag "presets.png" %></td>
+				<td class="bigboldtext"><%= text_field_tag "preset_#{preset.id}", preset.name %></td>
+				<td><%= link_to 'Destroy', preset_path(preset), :method => :delete %></td>
+			</tr>
+		<% end %>
+		</table>
+		<%= submit_tag "Save" %> | <%= link_to 'Back', presets_url %>
+	<% end %>
+<% end %>

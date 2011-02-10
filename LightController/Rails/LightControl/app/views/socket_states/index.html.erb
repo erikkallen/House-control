@@ -1,0 +1,30 @@
+<h1>Listing socket_states</h1>
+
+<table>
+  <tr>
+    <th>Preset</th>
+    <th>Power socket</th>
+    <th>State</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @presets.each do |preset| %>
+  <tr>
+    <td><%= preset.name %></td>
+	<% preset.power_sockets.each do |power_socket| %>
+	<% ss = SocketState.where("preset_id=? AND power_socket_id=?",preset.id,power_socket.id).first %>
+	<tr><td></td>
+    	<td><%= power_socket.name %></td>
+		<td><%= ss.state == 1 ? "On" : "Off" %></td>
+		<td><%= link_to 'Destroy', ss, :confirm => 'Are you sure?', :method => :delete %></td>
+	</tr>
+	<% end %>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Socket state', new_socket_state_path %>

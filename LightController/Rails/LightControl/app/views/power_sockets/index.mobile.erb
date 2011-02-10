@@ -1,0 +1,48 @@
+<% title "Outlets" %>
+<h1>Set outlets</h1>
+<ul class="rounded">
+  <% for power_socket in @power_sockets %>
+	<li><%=power_socket.name %><span class="toggle"><%= check_box_tag "btn_#{power_socket.id}", false,power_socket.current_state ==1 ? true : false %></span>
+		<script type="text/javascript" charset="utf-8">
+			$(function() { 
+			                $('<%= "#btn_#{power_socket.id}" %>').bind('click',function() { 
+			                        if($(this).is(':checked')) { 
+			                         $.get('<%=socket_enable_path(power_socket) %>');
+			                        } 
+			                        else 
+			                        { 
+			                        $.get('<%=socket_disable_path(power_socket) %>'); 
+			                        } 
+			                        }); 
+			                });
+		</script>
+		</li>
+	
+  <% end %>
+</ul>
+<%= link_to "Save", '#', :class => "button blueButton", :id => "save_link" %></h1>
+
+<script type="text/javascript" charset="utf-8">
+	$(function() { 
+	
+		$('#save_link').click( function(event) {
+				//alert("gets here");
+		        
+		        $.ajax({
+	                url: '<%= save_presets_url %>',
+	                type: 'get',
+	                dataType: 'mobile',
+	                success: function(data) {
+						$('#preset_list').append('<li id="preset_'+data+'"><%= link_to image_tag("presets.png", :class => "img") + "My Preset", "/presets/'+data+'" %></li>');
+		
+	                    jQT.goBack('#main');
+	                }
+	            });
+
+		        return false;
+		    });
+		
+	});
+	
+	
+</script>

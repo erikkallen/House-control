@@ -1,0 +1,20 @@
+<% title "Settings" %>
+<table width="100%">
+	<tr>
+		<td>
+			<%= image_tag '/images/outlet.png' %>
+		</td>
+		<td class="bigtext">
+			<%= link_to 'Power sockets', socket_settings_url %>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<%= image_tag '/images/presets.png' %>
+		</td>
+		<td class="bigtext">
+			<%= link_to 'Presets', preset_settings_url %>
+		</td>
+	</tr>
+</table>
+<%= link_to "Back", presets_url %>

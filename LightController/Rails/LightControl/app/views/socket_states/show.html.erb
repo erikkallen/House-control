@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Preset:</b>
+  <%= @socket_state.preset_id %>
+</p>
+
+<p>
+  <b>Power socket:</b>
+  <%= @socket_state.power_socket_id %>
+</p>
+
+<p>
+  <b>State:</b>
+  <%= @socket_state.state %>
+</p>
+
+
+<%= link_to 'Edit', edit_socket_state_path(@socket_state) %> |
+<%= link_to 'Back', socket_states_path %>

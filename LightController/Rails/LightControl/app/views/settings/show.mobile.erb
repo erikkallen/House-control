@@ -1,0 +1,85 @@
+<% title @setting.camelcase + " setting" %>
+
+
+<% if @setting == "socket" %>
+	<%= form_tag rename_power_sockets_path, :method => :put do %>
+		<ul class="rounded">	
+		<% @power_sockets.each do |power_socket| %>
+				<li id="del_<%= "#{power_socket.id}" %>" class="touch">
+<%= text_field_tag "power_socket_#{power_socket.id}", power_socket.name, :style => "width: 100px;" %>
+<%= link_to 'Destroy', power_socket_path(power_socket),{:id => "del_link_#{power_socket.id}", :class => "delete redButton", :style => "float:right;",:method => :delete} %>
+				</li>
+					<script type="text/javascript" charset="utf-8">
+						$(function() { 
+							$('#del_link_<%=power_socket.id %>').hide();
+							$('#del_<%=power_socket.id %>').swipe(function(evt, data) {  
+								$('#del_link_<%=power_socket.id %>').fadeIn();
+							})
+							
+							$('#del_link_<%=power_socket.id %>').click( function(event) {
+									//alert("gets here");
+
+							        $.ajax({
+						                url: this.href.replace('/rename', ''),
+						                type: 'post',
+						                dataType: 'script',
+						                data: { '_method': 'delete' },
+						                success: function() {
+						                    $('#del_<%=power_socket.id %>').remove();
+						                }
+						            });
+
+							        return false;
+							    });
+							
+						});
+					</script>
+		<% end %>
+		</ul>
+		
+<%= submit_tag "Save", :class => "submit button blueButton" %>
+	<% end %>
+<% end %>
+<% if @setting == "preset" %>
+	<%= form_tag rename_presets_path, :method => :put do %>
+	<ul class="rounded">
+		<% @presets.each do |preset| %>
+				
+					<li id="del_<%= "#{preset.id}" %>" class="touch"><%= text_field_tag "preset_#{preset.id}", preset.name, :style => "width: 130px;" %>
+				<%= link_to 'Destroy', '#', {:id => "del_link_#{preset.id}", :class => "delete redButton", :style => "float:right;"} %>
+			
+			</li>
+				<script type="text/javascript" charset="utf-8">
+					$(function() { 
+						$('#del_link_<%=preset.id %>').hide();
+						$('#del_<%=preset.id %>').swipe(function(evt, data) {  
+							$('#del_link_<%=preset.id %>').fadeIn();
+						})
+						
+						$('#del_link_<%=preset.id %>').click( function(event) {
+								//alert("gets here");
+						        
+						        $.ajax({
+					                url: '<%= preset_url(preset) %>',
+					                type: 'post',
+					                dataType: 'script',
+					                data: { '_method': 'delete' },
+					                success: function() {
+					                    $('#del_<%=preset.id %>').remove();
+										$('#preset_<%=preset.id %>').remove();
+					                }
+					            });
+
+						        return false;
+						    });
+						
+					});
+					
+					
+				</script>
+		<% end %>
+			</ul>
+	
+		<%= submit_tag "Save", :class => "submit button blueButton", :id => "save_button" %>
+	<% end %>
+<% end %>

@@ -1,0 +1,13 @@
+<h1>Name</h1>
+<ul>
+	
+	<li><%=@power_socket.name %></li>
+</ul>
+<h1>Action</h1>
+<ul>
+  <li><%=@power_socket.action %></li>
+</ul>
+<ul class="individual">
+  <li><%= link_to "Edit", edit_power_socket_path(@power_socket) %></li>
+	<li><%= link_to 'Delete', @power_socket, :confirm => 'Are you sure?', :method => :delete,:class => "delete" %></li>
+</ul>
