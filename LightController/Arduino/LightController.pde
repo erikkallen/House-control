@@ -5,7 +5,10 @@
 * @author Erik Kallen info@erikkallen.nl
 * @version 0.1
 */
+#include <SPI.h>
 #include <Messenger.h>
+#include <RF12B.h>
+#include <rf_packet.h>
 
 #define rfPin 2
 #define ledPin 13
@@ -45,7 +48,7 @@ void cmdReady() {
 		sendCommand(S_A, stateByte);
 		break;
 		case 'b':
-			//Serial.println("BB");
+	        //Serial.println("BB");
 		sendCommand(S_B, stateByte);
 		break;
 		case 'c':
@@ -68,13 +71,15 @@ void cmdReady() {
 
 
 void setup() {
-	pinMode(rfPin,OUTPUT);
+	//pinMode(rfPin,OUTPUT);
 	pinMode(ledPin,OUTPUT);
 //   pinMode(tePin,OUTPUT);
 	digitalWrite(rfPin, LOW);
 	digitalWrite(ledPin, HIGH);
 // digitalWrite(tePin, HIGH);
-	Serial.begin(9600);
+	Serial.begin(57600);
+        RF12.begin();
+        RF12.setFrequency(433.92);
 	command.attach(cmdReady);
 	Serial.println("Arduino booted");
 }
@@ -128,16 +133,16 @@ void sendByte(byte b) {
 void sendBit(int val) {
 	if (val) {
 		digitalWrite(ledPin, HIGH);
-		digitalWrite(rfPin, HIGH);
+		RF12.onoff(HIGH);
 		delayMicroseconds(998);
-		digitalWrite(rfPin, LOW);
+		RF12.onoff(LOW);
 		digitalWrite(ledPin, LOW);
 		delayMicroseconds(320);
 	} else {
 		digitalWrite(ledPin, HIGH);
-		digitalWrite(rfPin, HIGH);
+		RF12.onoff(HIGH);
 		delayMicroseconds(340);
-		digitalWrite(rfPin, LOW);
+		RF12.onoff(LOW);
 		digitalWrite(ledPin, LOW);
 		delayMicroseconds(998);
 	}
